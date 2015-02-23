@@ -1,0 +1,1 @@
+NPO = new Meteor.Collection("Non_Profits");

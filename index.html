@@ -1,0 +1,202 @@
+
+<head>
+<title> Accounts </title>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+	
+	{{>bodyTemplate}}
+	
+</body>
+
+<template name="header">
+
+				<div class="nav pull-center">
+					{{>user_info}}
+				</div>
+
+</template>
+
+<template name="user_info">
+	<ul class="nav">
+		<div id="username">
+			{{#if currentUser}}
+				<div="login">{{>user_loggedin}}</div>
+		</div><!--username-->
+			{{else}}
+				<div="logout">{{>user_loggedout}}</div>
+			{{/if}}
+	</ul>
+</template>
+
+<template name="user_loggedin">
+	{{#if loggingIn}}
+		<li><a>Logging in...</a></li>
+	{{else}}
+		<div class="dropdown">
+				<!--<img class="img-rounded" style="height: 32px; margin-top: 4px;" src="{{currentUser.services.twitter.profile_image_url}}"/>-->
+				<!--<center>{{currentUser.profile.name}}</center>-->
+				{{>TopButtons}}
+				
+		</div>
+	{{/if}}
+</template>
+
+<template name="user_loggedout">
+	<li><a id="login">Login with Twitter</a></li>
+</template>
+
+<template name="bodyTemplate">
+	{{#if isheader}}
+		{{>header}}
+		
+	{{/if}}
+	{{#if isSignUp}}
+		{{TopButtons}}
+		{{>SignUp}}
+		
+	{{/if}}
+	{{#if isNPlist}}
+		{{TopButtons}}
+		{{>user_loggedin}}
+		{{>NPlist}}
+		
+		
+	{{/if}}
+	{{#if isVolunteer}}
+		{{TopButtons}}
+		{{>user_loggedin}}
+		{{>Volunteer}}
+		
+		
+	{{/if}}
+	{{#if isEducation}}
+		{{TopButtons}}
+		{{>user_loggedin}}
+		{{>NPlist}}
+		
+	{{/if}}
+	{{#if isEnvironment}}
+		{{TopButtons}}
+		{{>user_loggedin}}
+		{{>NPlist}}
+		
+		
+	{{/if}}
+	{{#if isAnimals}}
+		{{TopButtons}}
+		{{>user_loggedin}}
+		{{>NPlist}}
+		
+		
+	{{/if}}
+	{{#if isJustice}}
+		{{TopButtons}}
+		{{>user_loggedin}}
+		{{>NPlist}}
+		{>TopButtons}}
+		
+	{{/if}}
+	{{#if isOther}}
+		{{TopButtons}}
+		{{>user_loggedin}}
+		{{>NPlist}}
+		
+		
+	{{/if}}
+	
+	{{#if isProfile}}
+		
+		{{>Profile}}
+	{{/if}}
+
+</template>
+
+<template name="NPlist">
+	<div class="NPlist">
+		{{#each Non_Profits getPage}}
+  			{{>Non_Profit}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="Non_Profit">
+	<div class="form">
+	
+	<span class="nonprofit">{{nonprofit}}</span>
+	<span class="location">{{location}}</span>
+	<span class="name">{{name}}</span>
+	<span class="contact">{{contact}}</span>
+	<span class="description">{{description}}</span>
+	<span class="picture"><img src= {{picture}} max-width="400px" height="auto"></span>
+	<span class="category">{{category}}</span>
+	<span class="number">{{number}}</span>
+	</div>
+</template>
+
+<template name="SignUp">
+		<div class ="SignUp">
+		<center>
+			<h1><div id="header">NEW NONPROFIT ENTRY</div></h1>
+			<input type="button" class="back" value="Back" />
+			<p><input type="text" id="np" placeholder="Nonprofit" size="70px"/></p>
+			<p><input type="text" id="city" placeholder="City" size="70px"/></p>
+        	<p><input type="text" id="name" placeholder="Your Name" size="70px"/></p>
+			 <p><input type="text" id="email" placeholder="Email" size="70px"/></p>
+			 <p><input type="text" id="about" placeholder="Description" size="70px"/></p>
+			 <p><input type="text" id="pic" placeholder="Picture File" size="70px"/></p>
+			 <p><input type ="text" id="number" placeholder="Phone Number (Format: 15105060817)" size="70px"/></p>
+			 <p><input type="text" id="category" placeholder='Education or Environment or Animals or Social Justice or "Other"' size="70px"/></p>
+			
+        	<p><input type="button" class="add" value="Add to Database" />
+        </center>
+		</div>
+</template>
+
+<template name="Volunteer">
+	<div class="Volunteer">
+		<input type="button" class="Education" value="Education" />
+		<input type="button" class="Environment" value="Environment"/>
+		<input type="button" class="Animals" value="Animals"/>
+		<input type="button" class="Justice" value="Social Justice"/>
+		<input type="button" class="Other" value="Other"/>
+		<input type="button" class="Register" value="Register Non-Profit"/>
+	</div>
+</template>
+
+<template name="TopButtons">
+	<div class="TopButtons">
+		<input type="button" class="VButton" value="Volunteer" />
+		<input type="button" class="PButton" value="{{currentUser.profile.name}}"/>
+		
+	</div>
+</template>
+
+<template name="Profile">
+	<img class="img-rounded" style=" height:73px; margin-top: 4px;" src="{{currentUser.services.twitter.profile_image_url}}"/>
+	{{currentUser.profile.name}}
+	<div>
+    <select id="select1">
+        <option value="1">1</option>
+        <option value="2" selected="selected">2</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        
+    </select>
+    <br/>
+    <button class="hours">Verify Hours</button>
+</div>
+	
+	<!--<input type="button" value="Verify Hours"/>-->
+	
+	
+</template>
+
